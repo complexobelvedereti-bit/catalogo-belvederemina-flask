@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cardápio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* CSS GERAL DA PÁGINA */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background-color: #f7f7f7; 
+            color: #333;
+        }
+        
+        /* Container Principal */
+        #main-content {
+            position: relative; 
+            min-height: 100vh;
+        }
+
+        /* CSS DO LOGO */
+        .header-logo-container {
+            text-align: center; 
+            margin-bottom: 30px; 
+        }
+        .company-logo {
+            max-width: 250px; 
+            height: auto;      
+            border-radius: 8px; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+        }
+        
+        /* CSS DO CATÁLOGO */
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 40px;
+            font-size: 3.1em;
+        }
+
+        .category-container {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .category-container h2 {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            color: #333;
+            font-size: 2.8em; 
+        }
+
+        .product-item {
+            padding: 15px 0;
+            border-bottom: 1px dashed #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .product-item:last-child {
+            border-bottom: none;
+        }
+
+        .product-info {
+            flex-grow: 1;
+            padding-right: 20px;
+            max-width: 70%;
+        }
+
+        .product-name {
+            font-weight: bold;
+            font-size: 1.7em;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .product-description {
+            font-size: 1.4em;
+            color: #767894;
+        }
+
+        .product-value {
+            font-weight: bold;
+            font-size: 1.9em;
+            color: #28a745; 
+            padding-top: 5px;
+        }
+        
+        /* CSS: Botão de Configurações POSIÇÃO ABSOLUTA */
+        .config-link {
+            position: absolute; 
+            bottom: 1px;       
+            right: 1px;        
+            
+            /* Estilos do Botão/Ícone */
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            line-height: 24px; 
+            
+            font-size: 14px;
+            
+            background-color: #007bff; 
+            color: white;              
+            border-radius: 50%;      
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block; 
+        }
+        
+        .config-link:hover {
+            background-color: #0056b3; 
+        }
+        
+        /* Media Query para ocultar em telas menores que 1024px (Celulares e Tablets) */
+        @media (max-width: 1024px) {
+            body {
+                padding: 10px;
+            }
+            .product-info {
+                max-width: 100%;
+                padding-right: 0;
+                margin-bottom: 10px;
+            }
+            .product-value {
+                width: 100%;
+                text-align: right;
+            }
+            
+            /* Oculta o botão de configurações no celular/tablet pequeno */
+            .config-link {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="main-content">
+
+        <a href="{{ url_for('login') }}" class="config-link" title="Configurações">
+            <i class="fas fa-cog"></i> 
+        </a>
+
+        <div class="header-logo-container">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" 
+                 alt="Logo da Empresa" 
+                 class="company-logo">
+        </div>
+
+        <h1>Cardápio</h1>
+
+        {% for categoria_key, produtos in cardapio.items() %}
+            <div class="category-container">
+                <h2>{{ categoria_key | replace('_', ' ') | title }}</h2>
+                
+                {% if produtos %}
+                    {% for produto in produtos %}
+                        <div class="product-item">
+                            <div class="product-info">
+                                <div class="product-name">{{ produto.nome }}</div>
+                                <div class="product-description">{{ produto.descricao }}</div>
+                            </div>
+                            <div class="product-value">R$ {{ '%.2f'|format(produto.valor) }}</div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Nenhum item nesta categoria.</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+    </div> </body>
+</html>

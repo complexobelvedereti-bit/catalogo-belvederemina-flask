@@ -1,0 +1,211 @@
+{
+    "cardapio": {
+        "bebidas_sem_alcool": [
+            {
+                "nome": "Água com/sem",
+                "descricao": "Todos os Bares",
+                "valor": 50.0
+            },
+            {
+                "nome": "Refrigerante 350ml (Lata)",
+                "descricao": "Todos os Bares",
+                "valor": 8.0
+            },
+            {
+                "nome": "Refrigerante 600ml",
+                "descricao": "Todos os Bares",
+                "valor": 10.0
+            },
+            {
+                "nome": "H2O",
+                "descricao": "Todos os Bares",
+                "valor": 10.0
+            },
+            {
+                "nome": "H2O Limoneto",
+                "descricao": "Todos os Bares",
+                "valor": 10.0
+            },
+            {
+                "nome": "Energético Red Bull",
+                "descricao": "Todos os Bares",
+                "valor": 15.0
+            },
+            {
+                "nome": "Suco",
+                "descricao": "Todos os Bares",
+                "valor": 10.0
+            }
+        ],
+        "cervejas": [
+            {
+                "nome": "Corona Long Neck",
+                "descricao": "Todos os Bares",
+                "valor": 15.0
+            },
+            {
+                "nome": "Heineken Long Neck",
+                "descricao": "Todos os Bares",
+                "valor": 15.0
+            },
+            {
+                "nome": "Heineken Long Neck Zero Álcool",
+                "descricao": "Todos os Bares",
+                "valor": 15.0
+            }
+        ],
+        "chopes": [
+            {
+                "nome": "Chope 300ml",
+                "descricao": "Todos os Bares",
+                "valor": 15.0
+            },
+            {
+                "nome": "Chope b",
+                "descricao": "Todos os Bares",
+                "valor": 10.0
+            }
+        ],
+        "combos_cervejas": [
+            {
+                "nome": "Combo 6 Budweiser Long Neck",
+                "descricao": "Apenas Bar Seco",
+                "valor": 90.0
+            },
+            {
+                "nome": "Combo 6 Corona Long Neck",
+                "descricao": "Apenas Bar Seco",
+                "valor": 90.0
+            },
+            {
+                "nome": "Combo 6 Heineken Long Neck",
+                "descricao": "Apenas Bar Seco",
+                "valor": 90.0
+            }
+        ],
+        "espumantes": [
+            {
+                "nome": "Espumante Moscatel",
+                "descricao": "11",
+                "valor": 70.0
+            },
+            {
+                "nome": "Espumante Brut",
+                "descricao": "11",
+                "valor": 80.0
+            }
+        ],
+        "drinks": [
+            {
+                "nome": "Ametista (Não Alcoólico)",
+                "descricao": "Todos os Bares",
+                "valor": 25.0
+            },
+            {
+                "nome": "Limonada de Coco (Não Alcoólico)",
+                "descricao": "Todos os Bares",
+                "valor": 25.0
+            },
+            {
+                "nome": "Caipirinha Cachaça",
+                "descricao": "Todos os Bares",
+                "valor": 30.0
+            },
+            {
+                "nome": "Capeta",
+                "descricao": "Todos os Bares",
+                "valor": 35.0
+            },
+            {
+                "nome": "Aperol Spritz",
+                "descricao": "Todos os Bares",
+                "valor": 30.0
+            },
+            {
+                "nome": "Gin Tropical",
+                "descricao": "Todos os Bares",
+                "valor": 30.0
+            },
+            {
+                "nome": "Jagerbomb",
+                "descricao": "Todos os Bares",
+                "valor": 35.0
+            },
+            {
+                "nome": "Caipirinha de Absolut",
+                "descricao": "Todos os Bares",
+                "valor": 35.0
+            },
+            {
+                "nome": "Mojito",
+                "descricao": "Todos os Bares",
+                "valor": 35.0
+            },
+            {
+                "nome": "Piña Colada",
+                "descricao": "Todos os Bares",
+                "valor": 35.0
+            }
+        ],
+        "lanches": [
+            {
+                "nome": "Calzone Assado",
+                "descricao": "Apenas Bar Seco",
+                "valor": 10.0
+            },
+            {
+                "nome": "Croissant Chocolate Preto",
+                "descricao": "Apenas Bar Seco",
+                "valor": 10.0
+            },
+            {
+                "nome": "Espetinho de Frango Frito",
+                "descricao": "Apenas Bar Seco",
+                "valor": 12.0
+            },
+            {
+                "nome": "Mini Pizza",
+                "descricao": "Apenas Bar Seco",
+                "valor": 15.0
+            },
+            {
+                "nome": "Pastel",
+                "descricao": "Apenas Bar Seco",
+                "valor": 15.0
+            },
+            {
+                "nome": "Sanduíche",
+                "descricao": "Apenas Bar Seco",
+                "valor": 15.0
+            }
+        ],
+        "porcoes": [
+            {
+                "nome": "Porção de Batata Frita 500g",
+                "descricao": "Apenas Bar Seco",
+                "valor": 35.0
+            },
+            {
+                "nome": "Porção de Polenta Frita 500g",
+                "descricao": "Apenas Bar Seco",
+                "valor": 35.0
+            },
+            {
+                "nome": "Porção de Filé de Tilápia + Batata Frita",
+                "descricao": "Apenas Bar Seco",
+                "valor": 85.0
+            },
+            {
+                "nome": "Porção de Filé de Tilápia + Polenta Frita",
+                "descricao": "Apenas Bar Seco",
+                "valor": 85.0
+            },
+            {
+                "nome": "Porção de Cubos de Frango + Batata Frita",
+                "descricao": "Apenas Bar Seco",
+                "valor": 75.0
+            }
+        ],
+        "teste": []
+    }
+}
