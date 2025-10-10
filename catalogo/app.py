@@ -2,8 +2,7 @@
 
 from flask import Flask, render_template, request, redirect, url_for, session
 import json
-# Importação de Werkzeug (o framework por baixo do Flask) não é mais estritamente necessária aqui, 
-# mas mantivemos o código limpo. O erro vinha de rotas mal-declaradas.
+import os # <-- IMPORTAÇÃO DE 'OS' ESSENCIAL PARA CAMINHOS ABSOLUTOS
 
 app = Flask(__name__)
 # CRUCIAL: A chave secreta protege as sessões (login) do Flask.
@@ -13,23 +12,33 @@ app.secret_key = 'uma-chave-secreta-muito-forte-aqui'
 USUARIO_CORRETO = "resort"
 SENHA_CORRETA = "resort0809" 
 
+# Define o caminho base do seu projeto para encontrar o JSON e Templates
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+
 # --- Funções Auxiliares de Dados ---
 
 def carregar_cardapio_completo():
-    """Lê todas as categorias do arquivo JSON."""
+    """Lê todas as categorias do arquivo JSON usando caminho absoluto."""
+    # Constrói o caminho completo para o arquivo JSON
+    json_path = os.path.join(BASE_DIR, 'dados.json')
+    
     try:
-        with open('dados.json', 'r', encoding='utf-8') as f:
+        with open(json_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
         return data.get('cardapio', {})
-    except (FileNotFoundError, json.JSONDecodeError):
-        # Retorna um cardápio vazio se o arquivo não existir ou estiver inválido
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        # Imprime o erro no log do Render se o arquivo não for encontrado ou for inválido
+        print(f"ERRO CRÍTICO ao carregar dados.json: {e}")
         return {}
 
 
 def salvar_catalogo(novas_categorias):
     """Sobrescreve o JSON com o novo dicionário de categorias."""
+    # Constrói o caminho completo para o arquivo JSON
+    json_path = os.path.join(BASE_DIR, 'dados.json')
+    
     data = {"cardapio": novas_categorias}
-    with open('dados.json', 'w', encoding='utf-8') as f:
+    with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
 
@@ -111,7 +120,6 @@ def move_item_action(category_key, item_index, direction):
 
 
 # --- ROTAS DE EXCLUSÃO (DELETE) ---
-# ESTAS ROTAS ESTÃO NO NÍVEL SUPERIOR DO ARQUIVO, ONDE DEVEM ESTAR.
 
 @app.route('/delete_category/<category_key>')
 def delete_category(category_key):
@@ -124,7 +132,6 @@ def delete_category(category_key):
         del cardapio_atual[category_key]
         salvar_catalogo(cardapio_atual)
 
-    # Redireciona com flag para dar alerta de sucesso
     return redirect(url_for('configuracoes', status='deleted'))
 
 
@@ -142,7 +149,6 @@ def delete_item(category_key, item_index):
             del lista_produtos[item_index]
             salvar_catalogo(cardapio_atual)
 
-    # Redireciona com flag para dar alerta de sucesso
     return redirect(url_for('configuracoes', status='deleted'))
 
 
@@ -206,7 +212,8 @@ def configuracoes():
                 
                 for i in range(num_produtos):
                     try:
-                        valor = float(valores[i].replace(',', '.').strip())
+                        # Corrige a vírgula para ponto e converte para float
+                        valor = float(valores[i].replace(',', '.').strip()) 
                     except ValueError:
                         valor = 0.0
 
@@ -224,8 +231,8 @@ def configuracoes():
 
         return redirect(url_for('configuracoes'))
         
-    # Pega o status da URL (saved ou deleted) para mostrar a mensagem
-    # O status agora é pego diretamente na rota GET, se presente.
     status = request.args.get('status') 
     
     return render_template('configuracoes.html', cardapio=cardapio_atual, status=status)
+
+# Removido o if __name__ == '__main__': para evitar conflito com o Gunicorn no Render
